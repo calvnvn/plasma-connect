@@ -13,6 +13,19 @@ return new class extends Migration
     {
         Schema::create('deliveries', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('farmer_id')->constrained();
+            $table->date('delivery_date');
+
+            // TBS Weight in kilograms
+            $table->integer('weight_kg');
+
+            // Quality metrics (0-100%)
+            $table->decimal('bad_fruit_percentage', 5, 2);
+
+            // Flags for quality control
+            $table->boolean('is_over_capacity')->default(false);
+            $table->boolean('needs_audit')->default(false);
+
             $table->timestamps();
         });
     }

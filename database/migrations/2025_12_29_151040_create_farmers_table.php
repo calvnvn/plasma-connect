@@ -23,6 +23,7 @@ return new class extends Migration
             $table->decimal('yield_capacity_limit', 8, 2)->nullable();
 
             // Farmer grading system
+            $table->enum('status', ['active', 'suspended', 'blacklisted'])->default('active');
             $table->char('current_grade', 1)->default('B');
             $table->timestamps();
         });
